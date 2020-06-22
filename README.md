@@ -3,11 +3,6 @@
 
 [![NPM Version][npm-image]][npm-url]
 [![Build Status][travis-image]][travis-url]
-[![Downloads Stats][npm-downloads]][npm-url]
-
-De um a dois parágrafos sobre o que é seu projeto e o que ele faz.
-
-![](../header.png)
 
 ## Compilar o projeto
 Primeiro faça um clone desse repositório em algum local no seu computador
@@ -37,9 +32,7 @@ npm run test
 
 ## Exemplo de uso
 
-Alguns exemplos interessantes e úteis sobre como seu projeto pode ser utilizado. Adicione blocos de códigos e, se necessário, screenshots.
-
-_Para mais exemplos, consulte a [Wiki][wiki]._ 
+Esse código foi feito para pessoas ou empresas que contém diversos usuários cadastrados no Zoom Cloud Meeting e desejam baixar os arquivos, para um possível backup local ou hospedar em outros servidores.  
 
 ## Configuração para Desenvolvimento
 
@@ -52,26 +45,18 @@ npm test
 
 ## Histórico de lançamentos
 
-* 0.2.1
+* 1.0.1
     * MUDANÇA: Atualização de docs (código do módulo permanece inalterado)
-* 0.2.0
-    * MUDANÇA: Remove `setDefaultXYZ()`
-    * ADD: Adiciona `init()`
-* 0.1.1
-    * CONSERTADO: Crash quando chama `baz()` (Obrigado @NomeDoContribuidorGeneroso!)
-* 0.1.0
+* 1.0.0
     * O primeiro lançamento adequado
-    * MUDANÇA: Renomeia `foo()` para `bar()`
-* 0.0.1
-    * Trabalho em andamento
 
 ## Meta
 
-Seu Nome – [@SeuNome](https://twitter.com/...) – SeuEmail@exemplo.com
+Lucas Panão – [@LucasPanao](https://www.linkedin.com/in/lucas-panao/) – contato@panao.com.br
 
-Distribuído sob a licença XYZ. Veja `LICENSE` para mais informações.
+Distribuído sob a licença MIT. Veja `LICENSE` para mais informações.
 
-[https://github.com/yourname/github-link](https://github.com/othonalberto/)
+[https://github.com/LucasPanao]
 
 ## Contributing
 
