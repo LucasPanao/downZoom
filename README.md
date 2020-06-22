@@ -36,12 +36,22 @@ Esse código foi feito para pessoas ou empresas que contém diversos usuários c
 
 ## Configuração para Desenvolvimento
 
-Descreva como instalar todas as dependências para desenvolvimento e como rodar um test-suite automatizado de algum tipo. Se necessário, faça isso para múltiplas plataformas.
+Deve se ter instalado em sua máquina o python e o navegador a ser utilizado deve ser o Google Chrome.  Ao baixar/utilizar o projeto existem 2 arquivos .txt, esses serão os arquivos que o bot irá ler e executar as requisições. 
+
+Dentro do arquivo list_ids.txt devem ser colocados as IDs de todos os usuários que deseja extrair os arquivos de reuniões do zoom. Essas ids serão usadas dentro da requisão GET. 
 
 ```sh
-make install
-npm test
+[UserId1]
+[UserId2]
 ```
+
+Dentro do arquivo list_emails.txt devem ser colocados os e-mails ou nomes de todos os usuários que deseja extrair os arquivos de reuniões do zoom. Lembrando que deve estar alinhados a sequencia de usuários do list_ids.txt, esses nomes serão usados para criar as pastas da qual as gravações serão encaminhadas. 
+
+```sh
+[EmailUsuario1]
+[EmailUsuario2]
+```
+
 
 ## Histórico de lançamentos
 
