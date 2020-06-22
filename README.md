@@ -15,21 +15,6 @@ Quando o clone estiver terminado, apenas execute o comando abaixo para instalar 
 npm install
 ```
 
-### Modo de desenvolvedor (hot reload)
-```
-npm run serve
-```
-
-### Compilar para produção
-```
-npm run build
-```
-
-### Rodar testes
-```
-npm run test
-```
-
 ## Exemplo de uso
 
 Esse código foi feito para pessoas ou empresas que contém diversos usuários cadastrados no Zoom Cloud Meeting e desejam baixar os arquivos, para um possível backup local ou hospedar em outros servidores.  
