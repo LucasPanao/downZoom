@@ -26,7 +26,6 @@ def download_wait(path_):
     print("download terminado.")
     return seconds
 
-#Configurando arquivo .ini que contém os caminhos das pastas
 configParser = configparser.RawConfigParser()   
 configFilePath = "path.ini"
 configParser.read(configFilePath)
@@ -34,17 +33,20 @@ configParser.read(configFilePath)
 ### DECLARAÇÕES 
 path_ = configParser.get('my-path', 'path1')
 path_v = configParser.get('my-path', 'path1_v')
+date_from = configParser.get('my-path', 'date_from')
+date_to = configParser.get('my-path', 'date_to')
+token = configParser.get('my-path', 'token')
 ####
 
 #Abre a lista de e-mails e ids e faz a varredura delas, substituindo o id dentro da URL
 files2 = open('list_emails.txt','r') 
 files = open('list_ids.txt','r') #nessa lista ficará os IDs dos usuarios que serão baixados os arquivos
 for line,line2 in zip(files.readlines(),files2.readlines()):
-    log = open(path_ + r'\log.txt','w')  # Arquivo de LOG
+    log = open(path_ + r'\log.txt','w') # Arquivo de LOG
     id = line.strip('\n') 
     id2 = line2.strip('\n')
-    url = "https://api.zoom.us/v2/users/%s/recordings?page_size=1000"%id 
-    hdr = 'INSIRA SEU TOKEN AQUI'
+    url = "https://api.zoom.us/v2/users/{0}/recordings?from={1}&to={2}&page_size=1000".format(id,date_from,date_to) #coloca o id e data dentro da URL
+    hdr = token
     url = (url + hdr)
     response = requests.get(url) # Realiza o GET 
     data = response.json() 
