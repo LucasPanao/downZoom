@@ -7,23 +7,34 @@ from pathlib import Path
 import shutil
 from os.path import basename
 from urllib.request import urlopen
+import configparser
 
 
 
 # Função para retornar quando os downloads acabaram por usuário
-def download_wait(path_to_downloads):
+def download_wait(path_):
     seconds = 0
     dl_wait = True
     while dl_wait and seconds < 2000:
         print("Fazendo download...")
         time.sleep(1)
         dl_wait = False
-        for fname in os.listdir(path_to_downloads):
+        for fname in os.listdir(path_):
             if fname.endswith('.crdownload'):
                 dl_wait = True
         seconds += 1
     print("download terminado.")
     return seconds
+
+#Configurando arquivo .ini que contém os caminhos das pastas
+configParser = configparser.RawConfigParser()   
+configFilePath = "path.ini"
+configParser.read(configFilePath)
+
+### DECLARAÇÕES 
+path_ = configParser.get('my-path', 'path1')
+path_v = configParser.get('my-path', 'path1_v')
+####
 
 #Abre a lista de e-mails e ids e faz a varredura delas, substituindo o id dentro da URL
 files2 = open('list_emails.txt','r') 
@@ -49,12 +60,12 @@ for line,line2 in zip(files.readlines(),files2.readlines()):
             arq, tsh = arq_name.split("?", 1)
             log.write(str(ReuniaoId) + ";" + GravacaoId + ";" + arq + "\n") #Escreve os ids e nome do arq dentro do log
             webbrowser.open_new_tab(url)
-        download_wait(r"C:\CAMINHO DA PASTA DE DOWNLOAD DO CHROME")       
+        download_wait(path_)       
     print("Todos os downloads terminaram, próximo usuário...")
     log.close()
-    Path(r"SUA PASTA DE DESTINO\%s"%id2).mkdir(parents=True, exist_ok=True)
-    source = r"C:\CAMINHO DA PASTA DE DOWNLOAD DO CHROME"
-    destination = r"SUA PASTA DE DESTINO\%s"%id2
+    Path(path_v%id2).mkdir(parents=True, exist_ok=True)
+    source = path_
+    destination = path_v%id2
 
     #Verifica os arquivos baixadas pelo zoom e os coloca na pasta do usuario.
     for f in os.listdir(source):
