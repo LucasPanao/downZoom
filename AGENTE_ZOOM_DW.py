@@ -1,16 +1,14 @@
 import json
-from pprint import pprint
 import requests
 import os
-import sys  
-import urllib.request
-import urllib3
-import csv
-import collections
 import webbrowser
 import time
 from pathlib import Path
 import shutil
+from os.path import basename
+from urllib.request import urlopen
+
+
 
 # Função para retornar quando os downloads acabaram por usuário
 def download_wait(path_to_downloads):
@@ -31,18 +29,29 @@ def download_wait(path_to_downloads):
 files2 = open('list_emails.txt','r') 
 files = open('list_ids.txt','r') #nessa lista ficará os IDs dos usuarios que serão baixados os arquivos
 for line,line2 in zip(files.readlines(),files2.readlines()):
+    log = open(r'CAMINHO DA PASTA\log.txt','w') # Arquivo de LOG
     id = line.strip('\n') 
     id2 = line2.strip('\n')
     url = "https://api.zoom.us/v2/users/%s/recordings?page_size=1000"%id 
-    print (url)
-    response = requests.get(url, headers={'Authorization': 'Bearer INSIRA SEU TOKEN AQUI '}) # Realiza o GET 
+    hdr = 'INSIRA SEU TOKEN AQUI'
+    url = (url + hdr)
+    response = requests.get(url) # Realiza o GET 
     data = response.json() 
     for meetings in data['meetings']:
-        DownUrl = (meetings['recording_files'][0]['download_url'])
-        webbrowser.open_new_tab(DownUrl)
+        ReuniaoId = (meetings['id'])
+        rec_files = (meetings['recording_files'])
+        for k in rec_files:
+            DownUrl = (k['download_url'])
+            GravacaoId = (k['id'])
+            url = DownUrl + hdr
+            response = urlopen(url)
+            arq_name = basename(response.url)
+            arq, tsh = arq_name.split("?", 1)
+            log.write(str(ReuniaoId) + ";" + GravacaoId + ";" + arq + "\n") #Escreve os ids e nome do arq dentro do log
+            webbrowser.open_new_tab(url)
         download_wait(r"C:\CAMINHO DA PASTA DE DOWNLOAD DO CHROME")       
     print("Todos os downloads terminaram, próximo usuário...")
-
+    log.close()
     Path(r"SUA PASTA DE DESTINO\%s"%id2).mkdir(parents=True, exist_ok=True)
     source = r"C:\CAMINHO DA PASTA DE DOWNLOAD DO CHROME"
     destination = r"SUA PASTA DE DESTINO\%s"%id2
