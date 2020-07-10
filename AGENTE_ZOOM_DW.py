@@ -40,7 +40,7 @@ path_v = configParser.get('my-path', 'path1_v')
 files2 = open('list_emails.txt','r') 
 files = open('list_ids.txt','r') #nessa lista ficará os IDs dos usuarios que serão baixados os arquivos
 for line,line2 in zip(files.readlines(),files2.readlines()):
-    log = open(r'CAMINHO DA PASTA\log.txt','w') # Arquivo de LOG
+    log = open(path_ + r'\log.txt','w')  # Arquivo de LOG
     id = line.strip('\n') 
     id2 = line2.strip('\n')
     url = "https://api.zoom.us/v2/users/%s/recordings?page_size=1000"%id 
