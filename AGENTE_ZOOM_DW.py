@@ -48,7 +48,14 @@ for line,line2 in zip(files.readlines(),files2.readlines()):
     url = "https://api.zoom.us/v2/users/{0}/recordings?from={1}&to={2}&page_size=1000".format(id,date_from,date_to) #coloca o id e data dentro da URL
     hdr = token
     url = (url + hdr)
-    response = requests.get(url) # Realiza o GET 
+    try:
+        response = requests.get(url) # Realiza o GET junto com o token
+        response.raise_for_status()
+    except requests.exceptions.HTTPError as err:
+        Path(path_v%id2).mkdir(parents=True, exist_ok=True)
+        log_error = open(path_v%id2 + r'\log_error.txt','w') 
+        log_error.write(str(response))
+        continue 
     data = response.json() 
     for meetings in data['meetings']:
         ReuniaoId = (meetings['id'])
