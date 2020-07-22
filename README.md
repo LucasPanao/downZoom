@@ -40,6 +40,8 @@ Dentro do arquivo list_emails.txt devem ser colocados os e-mails ou nomes de tod
 
 ## Histórico de lançamentos
 
+* 1.1.1
+    * MUDANÇA: Inserido uma proteção para usuários inexistentes
 * 1.1.0
     * MUDANÇA: Inserido o arquivo path.ini que contém as configurações necessárias para requisição
 * 1.0.1
